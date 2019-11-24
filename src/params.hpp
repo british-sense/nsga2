@@ -6,7 +6,7 @@
 namespace param {
 
     // general parameter
-    const int bit_length = 10;
+    const int gene_length = 100;
 
     // problems paramter
     std::string problem_name = "SCH";
@@ -18,10 +18,10 @@ namespace param {
     // ga parameter
     int population_size = 50;
     int offspring_size = 50;
-    int max_generation = 3;
+    int max_generation = 100;
     double mutation_rate = 0.01;
 
     // other paramter
     int seed = 0;
-    std::mt19937 mt;
+    std::mt19937 mt(seed);
 }
