@@ -18,7 +18,7 @@ void params_setting(int argc, char * argv[]) {
     for(int i = 1; i < argc; i++){
         std::string opt(argv[i]);
         std::string args(argv[(i + 1) % argc]);
-        if(opt == "-o") param::output_filename = args;
+        if(opt == "-o") param::output_filename = "./../data/result/" + args + ".csv";
         if(opt == "-s") param::seed = std::stoi(args);
         if(opt == "-g") param::max_generation = std::stoi(args);
         if(opt == "-p") param::population_size = std::stoi(args);
