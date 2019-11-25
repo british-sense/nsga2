@@ -25,5 +25,5 @@ namespace param {
     // other paramter
     int seed = 0;
     std::mt19937 mt(seed);
-    std::string output_filename = "./data/result/res.csv";
+    std::string output_filename = "./../data/result/res.csv";
 }
