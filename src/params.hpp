@@ -6,14 +6,15 @@
 namespace param {
 
     // general parameter
-    const int gene_length = 100;
+    int gene_length = 100;
+    std::string encoding_method = "bin";
 
-    // problems paramter
-    std::string problem_name = "SCH";
-    int dimension = 1;
-    int objective_function_size = 2;
-    double lower_limit = -1000;
-    double upper_limit = 1000;
+    // instance parameter
+    std::string instance_name = "";
+    int dimension = 0;
+    int objective_function_size = 0;
+    double lower_limit = 0.;
+    double upper_limit = 0.;
 
     // ga parameter
     int population_size = 50;
@@ -24,4 +25,5 @@ namespace param {
     // other paramter
     int seed = 0;
     std::mt19937 mt(seed);
+    std::string output_filename = "./data/result/res.csv";
 }

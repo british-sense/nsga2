@@ -1,10 +1,12 @@
-#include <fstream>
-
+#include "option.hpp"
 #include "individual.hpp"
 #include "nsga2.hpp"
+#include "utils.hpp"
 
-int main() {
+int main(int argc, char * argv[]) {
+
+    params_setting(argc, argv);
+
     std::vector<Individual> population = nsga2();
-    std::ofstream ofile("nsga2.csv");
-    for(auto indiv : population) ofile << indiv.f.at(0) << ", " << indiv.f.at(1) << std::endl;
+    
 }

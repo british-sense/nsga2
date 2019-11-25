@@ -75,9 +75,12 @@ void Individual::bin2gray() {
 }
 
 void Individual::evaluate() {
-    gray2bin();
-    bin2real();
-    bin2gray();
+    if(param::encoding_method == "bin") bin2real();
+    if(param::encoding_method == "gray") {
+        gray2bin();
+        bin2real();
+        bin2gray();
+    }
     f = SCH(x);
 }
 
