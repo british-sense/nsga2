@@ -127,6 +127,8 @@ std::vector<Individual> nsga2() {
         // extract next population from family.
         for(auto & indiv : family) indiv.cd = 0.;
         population = crowded_tournament_selection(family);
+
+        std::cout << generation << " " << population.front().f.front() << std::endl;
     }
     return population;
 }

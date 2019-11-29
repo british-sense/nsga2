@@ -25,8 +25,15 @@ struct Individual {
     void output(std::string str);
 
     bool operator > (const Individual & indiv) const {
-        // return ((f.at(0) >= indiv.f.at(0) && f.at(1) > indiv.f.at(1)) || (f.at(0) > indiv.f.at(0) && f.at(1) >= indiv.f.at(1)));
-        return ((f.at(0) >= indiv.f.at(0) && f.at(1) >= indiv.f.at(1)) && (f.at(0) > indiv.f.at(0) && f.at(1) > indiv.f.at(1)));
+        for(int obj1 = 0; obj1 < param::objective_function_size; obj1++) {
+            bool dominance = true;
+            for(int obj2 = 0; obj2 < param::objective_function_size; obj2++) {
+                if(obj1 == obj2 && f.at(obj2) < indiv.f.at(obj2)) dominance = false;
+                if(obj1 != obj2 && f.at(obj2) <= indiv.f.at(obj2)) dominance = false;
+            }
+            if(dominance) return true;
+        }
+        return false;
     }
     bool operator == (const Individual & indiv) const {
         return x == indiv.x;
