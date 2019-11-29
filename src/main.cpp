@@ -6,6 +6,7 @@
 int main(int argc, char * argv[]) {
 
     params_setting(argc, argv);
+    param::output_parameter();
 
     std::vector<Individual> population = nsga2();
 

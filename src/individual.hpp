@@ -59,7 +59,7 @@ void Individual::bin2real() {
         for(int locus = 0; locus < param::gene_length; locus++) {
             x.at(dim) += std::pow(2., param::gene_length - locus - 1) * gene.at(dim).at(locus);
         }
-        x.at(dim) = param::lower_limit + x.at(dim) * (param::upper_limit - param::lower_limit) / (std::pow(2., param::gene_length) - 1);
+        x.at(dim) = param::domain.at(dim).first + x.at(dim) * (param::domain.at(dim).second - param::domain.at(dim).first) / (std::pow(2., param::gene_length) - 1);
     }
 }
 
