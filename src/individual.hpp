@@ -88,7 +88,7 @@ void Individual::evaluate() {
         bin2real();
         bin2gray();
     }
-    f = SCH(x);
+    f = instance(x);
 }
 
 void Individual::mutation() {

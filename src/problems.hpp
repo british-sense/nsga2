@@ -1,6 +1,10 @@
 #pragma once
 
+#include <functional>
+
 #include "params.hpp"
+
+std::function<std::vector<double>(const std::vector<double> & x)> instance;
 
 void SCH_setting() {
     param::dimension = 1;
@@ -66,8 +70,20 @@ std::vector<double> ZDT2(const std::vector<double> & x) {
 }
 
 void setting_instance_parameter() {
-    if(param::instance_name == "SCH") SCH_setting();
-    if(param::instance_name == "FON") FON_setting();
-    if(param::instance_name == "ZDT1") ZDT1_setting();
-    if(param::instance_name == "ZDT2") ZDT2_setting();
+    if(param::instance_name == "SCH") {
+        SCH_setting();
+        instance = SCH;
+    }
+    if(param::instance_name == "FON") {
+        FON_setting();
+        instance = FON;
+    }
+    if(param::instance_name == "ZDT1") {
+        ZDT1_setting();
+        instance = ZDT1;
+    }
+    if(param::instance_name == "ZDT2") {
+        ZDT2_setting();
+        instance = ZDT2;
+    }
 }

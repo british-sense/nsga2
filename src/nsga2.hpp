@@ -9,31 +9,7 @@
 
 #include "params.hpp"
 #include "individual.hpp"
-
-std::tuple<Individual, Individual> uniform_crossover(const Individual & parentA, const Individual & parentB) {
-    Individual childA = parentA, childB = parentB;
-    std::uniform_int_distribution<int> bit(0, 1);
-    for(int dim = 0; dim < param::dimension; dim++) {
-        for(int locus = 0; locus < param::gene_length; locus++) {
-            if(bit(param::mt)) {
-                std::swap(childA.gene.at(dim).at(locus), childB.gene.at(dim).at(locus));
-            }
-        }
-    }
-    return {childA, childB};
-}
-
-std::tuple<Individual, Individual> onepoint_crossover(const Individual & parentA, const Individual & parentB) {
-    Individual childA = parentA, childB = parentB;
-    std::uniform_int_distribution<int> gene_range(0, param::gene_length - 1);
-    for(int dim = 0; dim < param::dimension; dim++) {
-        int cut = gene_range(param::mt);
-        for(int locus = cut; locus < param::gene_length; locus++) {
-            std::swap(childA.gene.at(dim).at(locus), childB.gene.at(dim).at(locus));
-        }
-    }
-    return {childA, childB};
-}
+#include "crossover.hpp"
 
 void non_dominated_sorting (std::list<Individual> & family) {
     std::list<Individual> sort_family;
@@ -107,8 +83,7 @@ std::vector<Individual> nsga2() {
         for(int i = 0; i < param::offspring_size; i += 2) {
             int indexA = population_range(param::mt);
             int indexB = population_range(param::mt);
-            std::tie(offspring.at(i), offspring.at(i + 1)) = uniform_crossover(population.at(indexA) , population.at(indexB));
-            // std::tie(offspring.at(i), offspring.at(i + 1)) = onepoint_crossover(population.at(indexA) , population.at(indexB));
+            std::tie(offspring.at(i), offspring.at(i + 1)) = crossover(population.at(indexA) , population.at(indexB));
             offspring.at(i).mutation();
             offspring.at(i + 1).mutation();
             offspring.at(i).evaluate();
@@ -127,8 +102,6 @@ std::vector<Individual> nsga2() {
         // extract next population from family.
         for(auto & indiv : family) indiv.cd = 0.;
         population = crowded_tournament_selection(family);
-
-        std::cout << generation << " " << population.front().f.front() << std::endl;
     }
     return population;
 }

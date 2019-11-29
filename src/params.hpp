@@ -21,6 +21,7 @@ namespace param {
     int offspring_size = 50;
     int max_generation = 100;
     double mutation_rate = 0.01;
+    std::string crossover_name = "uniform";
 
     // other paramter
     int seed = 0;
