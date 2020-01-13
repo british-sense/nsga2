@@ -26,7 +26,8 @@ void non_dominated_sorting (std::list<Individual> & family) {
             if(dominance) {
                 indiv1->rank = rank;
                 sort_family.emplace_back(*indiv1);
-                family.erase(indiv1--);
+                auto erase_itr = indiv1--;
+                family.erase(erase_itr);
             }
         }
     }
