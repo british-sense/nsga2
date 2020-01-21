@@ -27,6 +27,7 @@ namespace param {
     int seed = 0;
     std::mt19937 mt(seed);
     std::string output_filename = "./../data/result/res.csv";
+    int partition = 2;
 
     void output_parameter() {
         std::cout << "gene length : " << gene_length << std::endl;

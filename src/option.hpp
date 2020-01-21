@@ -29,6 +29,7 @@ void params_setting(int argc, char * argv[]) {
         if(opt == "-i" || opt == "--instance") param::instance_name = args;
         if(opt == "-e" || opt == "--encode") param::encoding_method = args;
         if(opt == "--crossover") param::crossover_name = args;
+        if(opt == "--partition") param::partition = std::stoi(args);
     }
     param::mt = std::mt19937(param::seed);
     setting_instance_parameter();
