@@ -17,7 +17,7 @@ namespace param {
     std::vector<std::pair<double, double>> domain;
 
     // ga parameter
-    int population_size = 50;
+    int population_size = 100;
     int offspring_size = 50;
     int max_generation = 100;
     double mutation_rate = 0.01;
@@ -27,7 +27,6 @@ namespace param {
     int seed = 0;
     std::mt19937 mt(seed);
     std::string output_filename = "./../data/result/res.csv";
-    int partition = 2;
 
     void output_parameter() {
         std::cout << "gene length : " << gene_length << std::endl;
@@ -38,7 +37,6 @@ namespace param {
         std::cout << "objective function size : " << objective_function_size << std::endl;
         std::cout << "each domain of x" << std::endl;
         for(int i = 0; i < domain.size(); i++) std::cout << "x(" << i << ") : [" << domain.at(i).first << ", " << domain.at(i).second << "], "; std::cout << std::endl;
-       
         std::cout << "population size : " << population_size << std::endl;
         std::cout << "offspring size : " << offspring_size << std::endl;
         std::cout << "max generation : " << max_generation << std::endl;

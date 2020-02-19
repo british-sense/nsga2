@@ -115,6 +115,22 @@ std::vector<double> ZDT6(const std::vector<double> & x) {
     return f;
 }
 
+void DTLZ6_setting(int d = 25) {
+    param::dimension = d;
+    param::objective_function_size = 2;
+    for(int dim = 0; dim < param::dimension; dim++) param::domain.emplace_back(std::pair(0., 1.));
+}
+
+std::vector<double> DTLZ6(const std::vector<double> & x) {
+    const double pi = 3.141592653589793;
+    std::vector<double> f(param::objective_function_size);
+    double g = 0.;
+    for(int i = 1; i < param::dimension; i++) g += std::pow(x.at(i), 0.1);
+    f.at(0) = (1 + g) * std::cos(x.at(0) * pi / 2.);
+    f.at(1) = (1 + g) * std::sin(x.at(0) * pi / 2.);
+    return f;
+}
+
 void setting_instance_parameter() {
     if(param::instance_name == "SCH") {
         SCH_setting();
@@ -143,5 +159,10 @@ void setting_instance_parameter() {
     if(param::instance_name == "ZDT6") {
         ZDT6_setting();
         instance = ZDT6;
+    }
+    if(param::instance_name == "DTLZ6") {
+        if(param::dimension) DTLZ6_setting(param::dimension);
+        else DTLZ6_setting(param::dimension);
+        instance = DTLZ6;
     }
 }
